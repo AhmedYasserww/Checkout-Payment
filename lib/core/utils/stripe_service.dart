@@ -9,10 +9,10 @@ class StripeService{
 
   Future<PaymentIntentModel> createPaymentIntent(PaymentIntentInputModel paymentIntentInputModel)async {
    var response = await apiService.post(
+
         url: "https://api.stripe.com/v1/payment_intents",
         data: paymentIntentInputModel.toJson(),
         contentType: "application/x-www-form-urlencoded",
-
         token: ApiKeys.secretKey
     );
    var paymentIntentModel = PaymentIntentModel.fromJson(response.data);

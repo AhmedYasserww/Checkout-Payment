@@ -1,6 +1,4 @@
-
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:payment_checkout/features/presentation/views/thank_you_view.dart';
 import 'package:payment_checkout/features/presentation/views/widgets/custom_button.dart';
@@ -16,7 +14,7 @@ class PaymentDetailsViewBody extends StatefulWidget {
 
 class _PaymentDetailsViewBodyState extends State<PaymentDetailsViewBody> {
   final GlobalKey<FormState>formKey = GlobalKey();
-   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,7 @@ class _PaymentDetailsViewBodyState extends State<PaymentDetailsViewBody> {
         slivers:
        [
           const SliverToBoxAdapter(child: PaymentMethodListView()),
-          SliverToBoxAdapter(child: CustomCreditCard(formKey: formKey,autovalidateMode: autovalidateMode,)),
+          SliverToBoxAdapter(child: CustomCreditCard(formKey: formKey,autovalidateMode: autoValidateMode,)),
           SliverFillRemaining(
            hasScrollBody: false,
            child: Align(
@@ -41,7 +39,7 @@ class _PaymentDetailsViewBodyState extends State<PaymentDetailsViewBody> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context){
                       return const ThankYouView();
                     }));
-                    autovalidateMode =AutovalidateMode.always;
+                    autoValidateMode =AutovalidateMode.always;
                     setState(() {
 
                     });

@@ -11,8 +11,7 @@ class CheckOutRepoImp implements CheckOutRepo {
   final StripeService stripeService = StripeService();
 
   @override
-  Future<Either<Failure, void>> makePayment(
-      {required PaymentIntentInputModel paymentIntentInputModel}) async {
+  Future<Either<Failure, void>> makePayment({required PaymentIntentInputModel paymentIntentInputModel}) async {
     try {
       await stripeService.makePayment(
           paymentIntentInputModel: paymentIntentInputModel);

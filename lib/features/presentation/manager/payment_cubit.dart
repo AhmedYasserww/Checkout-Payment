@@ -1,4 +1,5 @@
-import 'dart:nativewrappers/_internal/vm/lib/developer.dart';
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:payment_checkout/features/data/models/payment_intent_input_model.dart';
@@ -18,7 +19,7 @@ class PaymentCubit extends Cubit<PaymentState> {
               (failure) {
             emit(PaymentFailure(errorMessage: failure.errorMessage));
           },
-            (r){
+            (success){
           emit(PaymentSuccess());
       }
       );
