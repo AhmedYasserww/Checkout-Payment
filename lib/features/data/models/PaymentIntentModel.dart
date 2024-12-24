@@ -69,7 +69,7 @@ class PaymentIntentModel {
     nextAction = json['next_action'];
     onBehalfOf = json['on_behalf_of'];
     paymentMethod = json['payment_method'];
-    paymentMethodTypes = json['payment_method_types'] != null ? json['payment_method_types'].cast<dynamic>() : [];
+    paymentMethodTypes = json['payment_method_types'] != null ? json['payment_method_types'].cast<String>() : [];
     processing = json['processing'];
     receiptEmail = json['receipt_email'];
     review = json['review'];
@@ -109,7 +109,7 @@ class PaymentIntentModel {
   dynamic onBehalfOf;
   dynamic paymentMethod;
   PaymentMethodOptions? paymentMethodOptions;
-  List<dynamic>? paymentMethodTypes;
+  List<String>? paymentMethodTypes;
   dynamic processing;
   dynamic receiptEmail;
   dynamic review;

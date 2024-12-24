@@ -31,7 +31,9 @@ class PaymentCubit extends Cubit<PaymentState> {
 }
 @override
   void onChange(Change<PaymentState> change) {
+    log('**********************************');
     log('onChange: ${change.toString()}');
+    log('**********************************');
     super.onChange(change);
   }
 }
