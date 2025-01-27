@@ -8,16 +8,21 @@ import 'package:payment_checkout/features/data/models/pay_pal_models/AmountModel
 import 'package:payment_checkout/features/data/models/pay_pal_models/Details.dart';
 import 'package:payment_checkout/features/data/models/pay_pal_models/ItemListModel.dart';
 import 'package:payment_checkout/features/data/models/pay_pal_models/Items.dart';
+import 'package:payment_checkout/features/data/models/payment_intent_input_model.dart';
 import 'package:payment_checkout/features/presentation/manager/payment_cubit.dart';
 import 'package:payment_checkout/features/presentation/views/thank_you_view.dart';
 import 'package:payment_checkout/features/presentation/views/widgets/custom_button.dart';
+import 'package:payment_checkout/main.dart';
+import 'package:provider/provider.dart';
 class CustomButtonBlocConsumer extends StatelessWidget {
   const CustomButtonBlocConsumer({
     super.key,
   });
 
+
   @override
   Widget build(BuildContext context) {
+    final activeIndex = Provider.of<PaymentMethodProvider>(context).activeIndex;
     return BlocConsumer<PaymentCubit,PaymentState>(
       listener: (context, state) {
         if (state is PaymentSuccess) {
@@ -36,10 +41,15 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           isLoading: state is PaymentLoading?true :false,
           text:"Continue",
           onTap: (){
-            // PaymentIntentInputModel paymentIntentInputModel = PaymentIntentInputModel(amount: "200", currency: "USD",customerId: "cus_RLUcTNJa3u4joD");
-            // BlocProvider.of<PaymentCubit>(context).makePayment(paymentIntentInputModel: paymentIntentInputModel);
-          var transactionData = getTransactionData();
-          executePayPalPayment(context, transactionData);
+            if(activeIndex==0){
+              PaymentIntentInputModel paymentIntentInputModel = PaymentIntentInputModel(amount: "200", currency: "USD",customerId: "cus_RLUcTNJa3u4joD");
+              BlocProvider.of<PaymentCubit>(context).makePayment(paymentIntentInputModel: paymentIntentInputModel);
+            }
+           else if(activeIndex==1){
+              var transactionData = getTransactionData();
+              executePayPalPayment(context, transactionData);
+           }
+
 
           },
         );
